@@ -27,4 +27,9 @@ public class TodoController {
     public String newForm() {
         return "todo/new";
     }
+
+    @GetMapping("/confirm")
+    public String confirm() {
+        return "todo/confirm";
+    }
 }
