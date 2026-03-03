@@ -10,9 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.demo.service.TodoService;
+
+import lombok.RequiredArgsConstructor;
+
 @Controller
 @RequestMapping("/todo")
+@RequiredArgsConstructor
 public class TodoController {
+
+    private final TodoService todoService;
 
     @GetMapping
     public String list(Model model) {
@@ -37,8 +44,8 @@ public class TodoController {
     }
 
     @PostMapping("/complete")
-    public String complete(@RequestParam("title") String title, Model model) {
-        model.addAttribute("title", title);
-        return "todo/complete";
+    public String complete(@RequestParam("title") String title) {
+        todoService.create(title);
+        return "redirect:/todo";
     }
 }
