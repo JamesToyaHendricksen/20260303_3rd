@@ -22,4 +22,9 @@ public class TodoController {
         model.addAttribute("todos", todos);
         return "todo/list";
     }
+
+    @GetMapping("/new")
+    public String newForm() {
+        return "todo/new";
+    }
 }
