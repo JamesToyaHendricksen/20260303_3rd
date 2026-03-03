@@ -32,4 +32,9 @@ public class TodoController {
     public String confirm() {
         return "todo/confirm";
     }
+
+    @GetMapping("/complete")
+    public String complete() {
+        return "todo/complete";
+    }
 }
