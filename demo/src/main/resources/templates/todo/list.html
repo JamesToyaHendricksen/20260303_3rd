@@ -14,7 +14,15 @@
         <a href="/todo/new" class="btn btn-primary">新規登録</a>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm" th:if="${#lists.isEmpty(todos)}">
+        <div class="card-body text-center py-5">
+            <h2 class="h5 mb-3">ToDoがまだ登録されていません</h2>
+            <p class="text-muted mb-4">まずは新しいToDoを作成して、タスク管理を始めましょう。</p>
+            <a href="/todo/new" class="btn btn-primary">新規作成</a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm" th:unless="${#lists.isEmpty(todos)}">
         <div class="card-body p-0">
             <table class="table table-hover mb-0 align-middle">
                 <thead class="table-light">
@@ -29,9 +37,6 @@
                     <td class="px-3" th:text="${todo.id}">1</td>
                     <td th:text="${todo.title}">Sample title</td>
                     <td class="pe-3" th:text="${todo.completed} ? '完了' : '未完了'">未完了</td>
-                </tr>
-                <tr th:if="${#lists.isEmpty(todos)}">
-                    <td colspan="3" class="text-center text-muted py-4">ToDoがありません</td>
                 </tr>
                 </tbody>
             </table>
